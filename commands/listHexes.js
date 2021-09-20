@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 
 
 module.exports = {
-	name: 'listhex',
+	name: 'listhexes',
 	description: 'Lists all of the hexes from the Watched Players database.',
 	permission: [
 		{
