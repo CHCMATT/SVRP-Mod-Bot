@@ -1,7 +1,7 @@
 const mongo = require('./mongo');
 const watchedPlayers = require('./schemas/watchedPlayers');
 
-module.exports.checkHex = async (hexID) => {
+module.exports.checkWatched = async (hexID) => {
 	return await mongo().then(async (mongoose) => {
 		try {
 			const result = await watchedPlayers.findOne({
@@ -67,6 +67,28 @@ module.exports.listHexes = async () => {
 		try {
 			const list = (await watchedPlayers.find({}, { hexID: 1, _id: 0 }));
 			return list;
+		}
+		finally {
+			mongoose.connection.close();
+		}
+	});
+};
+
+
+module.exports.checkStaff = async (hexID) => {
+	return await mongo().then(async (mongoose) => {
+		try {
+			const result = await staffMembers.findOne({
+				hexID,
+			});
+			let found = false;
+			if (result) {
+				found = true;
+			}
+			else {
+				return;
+			}
+			return found;
 		}
 		finally {
 			mongoose.connection.close();
