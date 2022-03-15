@@ -1,2 +1,2 @@
-# SVRP-Mod-Bot
-A Discord bot for the Moderators of SVRP
+# SVRP Staff Bot
+A Discord bot for the Staff team of SVRP
