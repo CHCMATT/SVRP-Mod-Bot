@@ -15,17 +15,7 @@ module.exports = {
 			permission: true,
 		},
 		{
-			id: '768477098318102568', // Lead Moderator
-			type: 'ROLE',
-			permission: true,
-		},
-		{
 			id: '757627529103409283', // @everyone in Crew Discord
-			type: 'ROLE',
-			permission: false,
-		},
-		{
-			id: '888206953917075498', // @everyone in Law Discord
 			type: 'ROLE',
 			permission: false,
 		},
@@ -41,21 +31,23 @@ module.exports = {
 	async execute(interaction) {
 		const hex = interaction.options.getString('hex');
 		const btns = confirmDenyBtns();
-		await interaction.reply({ content: `Are you sure you want to remove Steam Hex \`${hex}\` from the database?`, components: [btns] });
+		await interaction.reply({
+			content: `Are you sure you want to remove Steam Hex \`${hex}\` from the database?`,
+			components: [btns],
+		});
 	},
 };
 
 function confirmDenyBtns() {
-	const row = new Discord.MessageActionRow()
-		.addComponents(
-			new Discord.MessageButton()
-				.setCustomId('confirmRem')
-				.setLabel('Confirm')
-				.setStyle('SUCCESS'),
-			new Discord.MessageButton()
-				.setCustomId('cancelRemAdd')
-				.setLabel('Cancel')
-				.setStyle('DANGER'),
-		);
+	const row = new Discord.MessageActionRow().addComponents(
+		new Discord.MessageButton()
+			.setCustomId('confirmRem')
+			.setLabel('Confirm')
+			.setStyle('SUCCESS'),
+		new Discord.MessageButton()
+			.setCustomId('cancelRemAdd')
+			.setLabel('Cancel')
+			.setStyle('DANGER'),
+	);
 	return row;
 }

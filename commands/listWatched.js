@@ -1,7 +1,6 @@
 const watchedDB = require('../watchedDB');
 const { MessageEmbed } = require('discord.js');
 
-
 module.exports = {
 	name: 'listwatched',
 	description: 'Lists all of the hexes from the Watched Players database.',
@@ -17,25 +16,15 @@ module.exports = {
 			permission: true,
 		},
 		{
-			id: '761125860324671499', // Moderator
-			type: 'ROLE',
-			permission: true,
-		},
-		{
 			id: '757627529103409283', // @everyone in Crew Discord
-			type: 'ROLE',
-			permission: false,
-		},
-		{
-			id: '888206953917075498', // @everyone in Law Discord
 			type: 'ROLE',
 			permission: false,
 		},
 	],
 	async execute(interaction) {
 		const hexList = [];
-		const hexArray = await watchedDB.listHexes();
-		hexArray.forEach(element => {
+		const hexArray = await watchedDB.listWatched();
+		hexArray.forEach((element) => {
 			hexList.push(element.hexID);
 		});
 
@@ -52,6 +41,5 @@ module.exports = {
 			.setTimestamp();
 
 		interaction.reply({ embeds: [hexListEmbed] });
-
 	},
 };

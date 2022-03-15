@@ -7,11 +7,6 @@ module.exports = {
 			type: 'ROLE',
 			permission: true,
 		},
-		{
-			id: '888206953917075498', // @everyone in Law Discord
-			type: 'ROLE',
-			permission: false,
-		},
 	],
 	async execute(interaction) {
 		await interaction.reply('Pong!');
